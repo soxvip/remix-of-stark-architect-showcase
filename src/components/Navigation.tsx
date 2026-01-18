@@ -17,7 +17,7 @@ const Navigation = () => {
             TRABALHO DURO
           </a>
           <a href="/services" className="text-minimal text-muted-foreground hover:text-foreground transition-colors duration-300">
-            SERVICES
+            SERVIÇOS
           </a>
           <a href="/about" className="text-minimal text-muted-foreground hover:text-foreground transition-colors duration-300">
             DINHEIRO
@@ -26,7 +26,7 @@ const Navigation = () => {
             BLOG
           </a>
           <a href="/contact" className="text-minimal text-muted-foreground hover:text-foreground transition-colors duration-300">
-            CONTACT
+            CONTATO
           </a>
         </div>
 
@@ -44,7 +44,7 @@ const Navigation = () => {
         </Button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Menu Mobile */}
       {isMenuOpen && (
         <div className="md:hidden bg-background border-b border-border">
           <div className="container mx-auto px-6 py-6 space-y-4">
@@ -52,7 +52,7 @@ const Navigation = () => {
               TRABALHO DURO
             </a>
             <a href="/services" className="block text-minimal text-muted-foreground hover:text-foreground transition-colors duration-300">
-              SERVICES
+              SERVIÇOS
             </a>
             <a href="/about" className="block text-minimal text-muted-foreground hover:text-foreground transition-colors duration-300">
               DINHEIRO
@@ -61,10 +61,10 @@ const Navigation = () => {
               BLOG
             </a>
             <a href="/contact" className="block text-minimal text-muted-foreground hover:text-foreground transition-colors duration-300">
-              CONTACT
+              CONTATO
             </a>
             
-            {/* Mobile Theme Toggle */}
+            {/* Toggle de Tema Mobile */}
             <div className="pt-4 border-t border-border">
               <ThemeToggle />
             </div>

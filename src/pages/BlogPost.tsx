@@ -6,6 +6,12 @@ const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
   const post = blogPosts.find(p => p.id === id);
 
+  const categoryMap: { [key: string]: string } = {
+    "SUSTAINABILITY": "SUSTENTABILIDADE",
+    "DESIGN": "DESIGN",
+    "URBAN PLANNING": "PLANEJAMENTO URBANO"
+  };
+
   if (!post) {
     return (
       <div className="min-h-screen bg-background">
@@ -14,13 +20,13 @@ const BlogPost = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-light text-architectural mb-8">
-                Post Not Found
+                Post Não Encontrado
               </h1>
               <Link 
                 to="/blog" 
                 className="text-minimal text-foreground hover:text-muted-foreground transition-colors duration-300"
               >
-                ← BACK TO BLOG
+                ← VOLTAR AO BLOG
               </Link>
             </div>
           </div>
@@ -33,25 +39,25 @@ const BlogPost = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Article Header */}
+      {/* Cabeçalho do Artigo */}
       <article className="pt-32 pb-32">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            {/* Back Link */}
+            {/* Link de Voltar */}
             <Link 
               to="/blog" 
               className="inline-block text-minimal text-muted-foreground hover:text-foreground transition-colors duration-300 mb-12"
             >
-              ← BACK TO BLOG
+              ← VOLTAR AO BLOG
             </Link>
             
-            {/* Article Meta */}
+            {/* Meta do Artigo */}
             <div className="mb-8">
               <div className="flex items-center text-minimal text-muted-foreground space-x-4 mb-6">
-                <span className="bg-muted px-3 py-1 text-foreground">{post.category}</span>
+                <span className="bg-muted px-3 py-1 text-foreground">{categoryMap[post.category] || post.category}</span>
                 <span>{post.date}</span>
                 <span>•</span>
-                <span>{post.readTime}</span>
+                <span>{post.readTime.replace("min read", "min de leitura")}</span>
                 <span>•</span>
                 <span>{post.author}</span>
               </div>
@@ -65,7 +71,7 @@ const BlogPost = () => {
               </p>
             </div>
             
-            {/* Featured Image */}
+            {/* Imagem Destaque */}
             <div className="w-full h-96 mb-12 overflow-hidden">
               <img 
                 src={post.image} 
@@ -74,7 +80,7 @@ const BlogPost = () => {
               />
             </div>
             
-            {/* Article Content */}
+            {/* Conteúdo do Artigo */}
             <div className="prose prose-lg max-w-none">
               <div 
                 className="text-muted-foreground leading-relaxed space-y-6"
@@ -106,20 +112,20 @@ const BlogPost = () => {
               />
             </div>
             
-            {/* Author Info */}
+            {/* Info do Autor */}
             <div className="mt-16 pt-8 border-t border-border">
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-muted rounded-full"></div>
                 <div>
                   <h3 className="text-lg font-medium text-foreground">{post.author}</h3>
-                  <p className="text-muted-foreground">Architect & Writer</p>
+                  <p className="text-muted-foreground">Arquiteto & Escritor</p>
                 </div>
               </div>
             </div>
             
-            {/* Related Posts */}
+            {/* Posts Relacionados */}
             <div className="mt-20">
-              <h3 className="text-2xl font-light text-architectural mb-8">Related Articles</h3>
+              <h3 className="text-2xl font-light text-architectural mb-8">Artigos Relacionados</h3>
               <div className="grid md:grid-cols-2 gap-8">
                 {blogPosts
                   .filter(p => p.id !== post.id && p.category === post.category)
@@ -136,7 +142,7 @@ const BlogPost = () => {
                       <h4 className="text-lg font-light text-architectural group-hover:text-muted-foreground transition-colors duration-300 mb-2">
                         {relatedPost.title}
                       </h4>
-                      <p className="text-minimal text-muted-foreground">{relatedPost.date} • {relatedPost.readTime}</p>
+                      <p className="text-minimal text-muted-foreground">{relatedPost.date} • {relatedPost.readTime.replace("min read", "min de leitura")}</p>
                     </Link>
                   ))
                 }
